@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+	<version>1.0</version>
+	<description>Projeto desenvolvido durante a mat&amp;#233;ria de matem&amp;#225;tica computacional para problemas de otimiza&amp;#231;&amp;#227;o</description>
+	<configs>
+		<config default="true" name="exe 1" category="opl">
+			<ref name="MCPO.mod" type="model">
+			</ref>
+		</config>
+	</configs>
+	
+</project>
