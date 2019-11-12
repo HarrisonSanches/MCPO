@@ -2,17 +2,39 @@ from Djikstra import *
 
 
 def main():
-    Rede = GraphUndirectedWeighted(6)
-    Rede.add_edge(0, 1, 1)
-    Rede.add_edge(0, 5, 1)
-    Rede.add_edge(1, 2, 1)
-    Rede.add_edge(1, 4, 2)
-    Rede.add_edge(2, 3, 1)
-    Rede.add_edge(4, 3, 1)
-    Rede.add_edge(4, 5, 1)
+    dic_links = {}
+    tam = 9
+    for i in range(tam):
+        for j in range(tam):
+            if i != j:
+                dic_links[str(i) +" - " + str(j)] = 0
 
-    shortest_path, distance = dijkstra(Rede, 1, 4)
-    print(shortest_path, distance)
+    print(dic_links)
+
+    arq = open("adjascências.txt", 'r')
+    linha = arq.readline()
+    Rede = GraphUndirectedWeighted(tam)
+    while linha:
+        linha = linha.split()
+        Rede.add_edge(int(linha[0]), int(linha[1]), int(linha[2]))
+        linha = arq.readline()
+    arq.close()
+
+    arq = open("rotas_pre_def.txt", 'r')
+    linha = arq.readline()
+
+    while linha:
+        print("cadeia", linha, end="")
+        linha = linha.split()
+        for i in range(len(linha) - 1):
+            shortest_path, distance = dijkstra(Rede, int(linha[i]), int(linha[i + 1]))
+            print("origem", linha[i], "destino:", linha[i + 1])
+            print("caminho:", shortest_path, "saltos", distance)
+        print()
+        print()
+        linha = arq.readline()
+
+    arq.close()
 
     return 0
 

@@ -48,7 +48,7 @@ def dijkstra(graph, source, dest):
             if distances[e.vertex] > candidate_distance:
                 distances[e.vertex] = candidate_distance
                 parents[e.vertex] = v
-                # primitive but effective negative cycle detection
+
                 if candidate_distance < -1000:
                     raise Exception("Negative cycle detected")
                 q.put(([distances[e.vertex], e.vertex]))
